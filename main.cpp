@@ -18,6 +18,7 @@ bool fresh=false;
 bool over=false;
 bool dark=true;
 bool lines=false;
+bool blocks=true;
 
 void menu();
 
@@ -545,30 +546,32 @@ void mapMatrix(){
                 glVertex2f(x+1,y+1);
                 glVertex2f(x,y+1);
                 glEnd();
-                if(dark){
-                    if(!lines){
-                        glColor3f(0.0,0.0,0.0);
+                if(blocks){
+                    if(dark){
+                        if(!lines){
+                            glColor3f(0.0,0.0,0.0);
+                        }else{
+                            glColor3f(1.0,1.0,1.0);
+                        }
                     }else{
-                        glColor3f(1.0,1.0,1.0);
+                        if(!lines){
+                            glColor3f(1.0,1.0,1.0);
+                        }else{
+                            glColor3f(0.0,0.0,0.0);
+                        }
                     }
-                }else{
-                    if(!lines){
-                        glColor3f(1.0,1.0,1.0);
-                    }else{
-                        glColor3f(0.0,0.0,0.0);
-                    }
+                    glLineWidth(2);
+                    glBegin(GL_LINES);
+                    glVertex2f(x,y);
+                    glVertex2f(x+1,y);
+                    glVertex2f(x+1,y);
+                    glVertex2f(x+1,y+1);
+                    glVertex2f(x+1,y+1);
+                    glVertex2f(x,y+1);
+                    glVertex2f(x,y+1);
+                    glVertex2f(x,y);
+                    glEnd();
                 }
-                glLineWidth(2);
-                glBegin(GL_LINES);
-                glVertex2f(x,y);
-                glVertex2f(x+1,y);
-                glVertex2f(x+1,y);
-                glVertex2f(x+1,y+1);
-                glVertex2f(x+1,y+1);
-                glVertex2f(x,y+1);
-                glVertex2f(x,y+1);
-                glVertex2f(x,y);
-                glEnd();
             }
         }
     }
@@ -665,6 +668,15 @@ void keyboard(unsigned char c,int x,int y){
             }else{
                 lines=true;
             }
+            break;
+        case 'B':
+        case 'b':
+            if(blocks){
+                blocks=false;
+            }else{
+                blocks=true;
+            }
+            break;
     }
 }
 
