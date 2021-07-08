@@ -1,2 +1,2 @@
-# simple_tetris
-simple tetris game simulation using openGL
+# Simple_tetris
+Simple tetris game simulation using OpenGL(freeglut) in C++
